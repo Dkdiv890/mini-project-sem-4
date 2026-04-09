@@ -1,0 +1,10 @@
+# Directories to ignore
+dataset/
+venv/
+__pycache__/
+
+# Mac OS files
+.DS_Store
+
+# Temporary files
+*.zip

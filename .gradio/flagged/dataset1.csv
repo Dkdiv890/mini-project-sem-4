@@ -1,0 +1,2 @@
+Upload Image Here,Prediction,timestamp
+.gradio/flagged/Upload Image Here/6d910f2ef6c9b68c1528/white-news-paper-ripped-message-background.webp,"{""label"": ""paper"", ""confidences"": [{""label"": ""paper"", ""confidence"": 0.9989672899246216}, {""label"": ""metal"", ""confidence"": 0.0009435940883122385}, {""label"": ""plastic"", ""confidence"": 8.91110030352138e-05}]}",2026-04-09 15:37:28.844042
