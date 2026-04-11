@@ -1,11 +1,17 @@
 import os
-import gradio as gr
-import tensorflow as tf
+import io
+import base64
 import numpy as np
+import tensorflow as tf
+from flask import Flask, request, jsonify, render_template
 from PIL import Image
+
+app = Flask(__name__)
+
 MODEL_PATH = 'waste_classification_model.h5'
 CLASS_NAMES = ['metal', 'paper', 'plastic']
 IMG_SIZE = (224, 224)
+
 print('Loading model...')
 try:
     model = tf.keras.models.load_model(MODEL_PATH)
@@ -14,17 +20,35 @@ except Exception as e:
     print(f'Error loading model: {e}')
     model = None
 
-def predict_image(image):
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/predict', methods=['POST'])
+def predict():
     if model is None:
-        return 'Error: Model file not found or failed to load.'
-    image = image.resize(IMG_SIZE)
-    img_array = tf.keras.utils.img_to_array(image)
-    img_array = tf.expand_dims(img_array, 0)
-    predictions = model.predict(img_array)
-    score = predictions[0]
-    confidences = {CLASS_NAMES[i]: float(score[i]) for i in range(len(CLASS_NAMES))}
-    return confidences
-demo = gr.Interface(fn=predict_image, inputs=gr.Image(type='pil', label='Upload Image Here'), outputs=gr.Label(num_top_classes=3, label='Prediction'), title='♻️ Waste Classification Model', description='Upload an image containing **Metal**, **Paper**, or **Plastic**. The AI model will predict the type of waste.')
+        return jsonify({'error': 'Model not loaded'}), 500
+    if 'file' not in request.files:
+        return jsonify({'error': 'No file uploaded'}), 400
+    file = request.files['file']
+    if file.filename == '':
+        return jsonify({'error': 'No file selected'}), 400
+    try:
+        image = Image.open(io.BytesIO(file.read())).convert('RGB')
+        image_resized = image.resize(IMG_SIZE)
+        img_array = tf.keras.utils.img_to_array(image_resized)
+        img_array = tf.expand_dims(img_array, 0)
+        predictions = model.predict(img_array)
+        score = predictions[0]
+        result = {
+            'predictions': {CLASS_NAMES[i]: round(float(score[i]) * 100, 2) for i in range(len(CLASS_NAMES))},
+            'top_class': CLASS_NAMES[int(np.argmax(score))],
+            'confidence': round(float(np.max(score)) * 100, 2)
+        }
+        return jsonify(result)
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 7860))
-    demo.launch(server_name='0.0.0.0', server_port=port)
+    port = int(os.environ.get('PORT', 8080))
+    app.run(host='0.0.0.0', port=port, debug=False)
