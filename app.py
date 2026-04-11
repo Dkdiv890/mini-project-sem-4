@@ -1,10 +1,13 @@
 import os
+import tensorflow as tf
+import numpy as np
+from PIL import Image
+from flask import Flask, request, jsonify, render_template
 import io
 import base64
-import numpy as np
-import tensorflow as tf
-from flask import Flask, request, jsonify, render_template
-from PIL import Image
+
+# Force CPU to save memory on Render Free Tier
+tf.config.set_visible_devices([], 'GPU')
 
 app = Flask(__name__)
 
@@ -14,15 +17,22 @@ IMG_SIZE = (224, 224)
 
 class FixedDepthwiseConv2D(tf.keras.layers.DepthwiseConv2D):
     def __init__(self, **kwargs):
-        kwargs.pop('groups', None)
+        # Removing 'groups' which causes issues between newer TF (Mac) and older TF (Render)
+        if 'groups' in kwargs:
+            kwargs.pop('groups')
         super().__init__(**kwargs)
 
-print('Loading model...')
+print('--- SYSTEM LOG: STARTING MODEL LOAD ---')
 try:
-    model = tf.keras.models.load_model(MODEL_PATH, custom_objects={'DepthwiseConv2D': FixedDepthwiseConv2D})
-    print('Model loaded successfully!')
+    # Adding more aliases for DepthwiseConv2D to catch internal Keras mappings
+    custom_objects = {
+        'DepthwiseConv2D': FixedDepthwiseConv2D,
+        'FixedDepthwiseConv2D': FixedDepthwiseConv2D
+    }
+    model = tf.keras.models.load_model(MODEL_PATH, custom_objects=custom_objects, compile=False)
+    print('--- SYSTEM LOG: MODEL LOADED SUCCESSFULLY! ---')
 except Exception as e:
-    print(f'Error loading model: {e}')
+    print(f'--- SYSTEM LOG: ERROR LOADING MODEL: {str(e)} ---')
     model = None
 
 @app.route('/')
