@@ -12,9 +12,14 @@ MODEL_PATH = 'waste_classification_model.h5'
 CLASS_NAMES = ['metal', 'paper', 'plastic']
 IMG_SIZE = (224, 224)
 
+class FixedDepthwiseConv2D(tf.keras.layers.DepthwiseConv2D):
+    def __init__(self, **kwargs):
+        kwargs.pop('groups', None)
+        super().__init__(**kwargs)
+
 print('Loading model...')
 try:
-    model = tf.keras.models.load_model(MODEL_PATH)
+    model = tf.keras.models.load_model(MODEL_PATH, custom_objects={'DepthwiseConv2D': FixedDepthwiseConv2D})
     print('Model loaded successfully!')
 except Exception as e:
     print(f'Error loading model: {e}')
