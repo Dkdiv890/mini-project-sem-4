@@ -10,14 +10,12 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Animated Background -->
   <div class="bg-orbs">
     <div class="orb orb1"></div>
     <div class="orb orb2"></div>
     <div class="orb orb3"></div>
   </div>
 
-  <!-- Navbar -->
   <nav class="navbar">
     <div class="nav-brand">
       <span class="nav-icon">♻️</span>
@@ -26,7 +24,6 @@
     <div class="nav-badge">96% Accuracy · EfficientNetB0</div>
   </nav>
 
-  <!-- Hero Section -->
   <section class="hero">
     <div class="hero-content">
       <div class="hero-tag">🤖 Deep Learning · Transfer Learning</div>
@@ -51,11 +48,8 @@
     </div>
   </section>
 
-  <!-- Main Classifier Section -->
   <section class="classifier-section">
     <div class="classifier-card" id="classifierCard">
-
-      <!-- Upload Zone -->
       <div class="upload-zone" id="uploadZone">
         <input type="file" id="fileInput" accept="image/*" hidden />
         <div class="upload-icon">📁</div>
@@ -65,7 +59,6 @@
         <p class="upload-formats">Supports JPG, PNG, WEBP</p>
       </div>
 
-      <!-- Preview + Predict -->
       <div class="preview-zone hidden" id="previewZone">
         <div class="preview-header">
           <button class="back-btn" id="backBtn">← Change Image</button>
@@ -82,7 +75,6 @@
         </button>
       </div>
 
-      <!-- Results -->
       <div class="results-zone hidden" id="resultsZone">
         <div class="result-header">
           <div class="result-icon" id="resultIcon">🏆</div>
@@ -92,18 +84,13 @@
             <p class="result-confidence" id="resultConfidence">—% confidence</p>
           </div>
         </div>
-
         <div class="result-bars" id="resultBars"></div>
-
         <div class="result-tip" id="resultTip"></div>
-
         <button class="retry-btn" id="retryBtn">🔁 Try Another Image</button>
       </div>
-
     </div>
   </section>
 
-  <!-- How It Works -->
   <section class="how-section">
     <h2 class="section-title">How It Works</h2>
     <div class="steps-grid">
@@ -128,7 +115,6 @@
     </div>
   </section>
 
-  <!-- Categories Section -->
   <section class="categories-section">
     <h2 class="section-title">Supported Categories</h2>
     <div class="categories-grid">
@@ -153,7 +139,6 @@
     </div>
   </section>
 
-  <!-- Footer -->
   <footer class="footer">
     <p>Built with ❤️ using <strong>EfficientNetB0</strong> · TensorFlow · Flask</p>
     <p class="footer-sub">96% Validated Accuracy · <a href="https://www.kaggle.com/datasets/sumn2u/garbage-classification-v2" target="_blank" style="color: #10b981; text-decoration: none; font-weight: 500;">Dataset Source (Kaggle) ↗</a></p>
