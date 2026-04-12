@@ -1,74 +1,82 @@
 <div align="center">
-  <h1>♻️ Intelligent Waste Classification AI</h1>
-  <p><strong>A Deep Learning Computer Vision engine capable of predicting Metal, Paper, and Plastic waste in real-time with 98% validated accuracy.</strong></p>
+  <img src="https://img.icons8.com/isometric/512/bothe-recycle-bin.png" width="120" />
+  <h1>♻️ WasteAI: Intelligent Waste Classifier</h1>
+  <p><strong>A Premium Deep Learning Engine for Real-Time Waste Segregation</strong></p>
   
-  [![Python](https://img.shields.io/badge/Python-3.11-blue.svg)](https://www.python.org/)
-  [![TensorFlow](https://img.shields.io/badge/TensorFlow-2.19.0-orange.svg)](https://www.tensorflow.org/)
-  [![Gradio](https://img.shields.io/badge/Gradio-Web_UI-ff69b4.svg)](https://gradio.app/)
-  [![Deployment](https://img.shields.io/badge/Cloud-Render-purple.svg)](https://render.com/)
+  [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
+  [![TensorFlow 2.12](https://img.shields.io/badge/TensorFlow-2.12-orange.svg?style=flat-square&logo=tensorflow&logoColor=white)](https://www.tensorflow.org/)
+  [![Flask](https://img.shields.io/badge/Flask-Web_UI-000000.svg?style=flat-square&logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
+  [![EfficientNetB0](https://img.shields.io/badge/Architecture-EfficientNetB0-green.svg?style=flat-square)](https://arxiv.org/abs/1905.11946)
 </div>
 
-<br />
+---
 
-## 🌟 Overview
-Solving empirical challenges in automated waste segregation at an industrial robotic level. This repository contains a production-ready artificial intelligence engine configured to reliably scrutinize and classify raw object instances into actionable categorical outcomes.
+## 🌟 Project Overview
+WasteAI is a state-of-the-art computer vision application designed to automate the classification of common household waste into **Metal, Paper, and Plastic**. 
 
-Trained extensively locally (by leveraging Transfer Learning & the **EfficientNetB0** architecture) across ~6,000 augmented empirical images, the system yields unparalleled operational accuracy without extensive computational overhead.
+Built for industrial-grade reliability, the system leverages **Transfer Learning** with the **EfficientNetB0** architecture, trained on thousands of verified real-world samples to achieve an impressive **96% validation accuracy**.
 
-## 🛠️ Technology Stack
-* **AI & Deep Learning:** TensorFlow, Keras, EfficientNetB0
-* **Data Processing:** Pillow (PIL), NumPy, OS Walk/Regex pipelines
-* **Web Interface:** Gradio (Rapid HuggingFace Frontend API)
-* **Deployment & Cloud:** Procfile, Render.com
+### ✨ Highlights
+- **Premium Dark-Mode UI:** A modern, glassmorphism-inspired web interface built with Flask and Vanilla CSS/JS.
+- **EfficientNetB0 Power:** High-accuracy classification with low computational overhead, optimized for cloud deployment.
+- **Real-Time Analysis:** Instant results with confidence scoring and recycling tips.
+- **Production-Ready:** Fully configured for deployment on Render.com with memory-optimized startup logic.
 
 ---
 
-## 📈 Model Performance & Accuracy Metrics
-The model utilizes a heavily researched Two-Phase Deep Training mechanism (Broad Feature Extraction mapping followed by Unfrozen Deep-Parameter Fine-tuning on 58 hidden layers).
-
-**Global Validated Accuracy:** `98.11%`
-
-| Class Target   | Precision      | Recall    | F1-Score |
-| -------------- | -------------- | --------- | -------- |
-| **Metal**      | 97%            | 98%       | 97%      |
-| **Paper**      | 97%            | 98%       | 97%      |
-| **Plastic**    | **99%**        | **97%**   | **98%**  |
+## 🚀 Experience the UI
+The new web interface features:
+- 🎯 **Drag & Drop** image uploads.
+- 📊 **Animated Confidence Bars** showing the top 3 predictions.
+- 💡 **Smart Recycling Tips** based on the identified material.
+- 📱 **Fully Responsive** design for mobile and desktop presentation.
 
 ---
 
-## 💻 How to Run Locally
-Want to test the AI on your local machine rather than the cloud infrastructure? Follow these simple steps.
+## 🛠️ Technical Implementation
 
-**1. Clone the Repository:**
-```bash
-git clone https://github.com/Dkdiv890/pookies.git
-cd pookies
-```
+### Model Architecture
+The engine utilizes **EfficientNetB0**, which uses a compound scaling method to balance network depth and width. 
+- **Training Strategy:** Two-phase approach (Frozen Feature Extraction + Fine-Tuning).
+- **Optimization:** Adam optimizer with `ReduceLROnPlateau` and `EarlyStopping` callbacks.
+- **Accuracy:** `~96%` on the verified dataset.
 
-**2. Setup Python Virtual Environment:**
-```bash
-python -m venv venv
-source venv/bin/activate  # On Mac/Linux
-```
-
-**3. Install Dependencies:**
-```bash
-pip install -r requirements.txt
-```
-
-**4. Launch the Web UI Server:**
-```bash
-python app.py
-```
-> The terminal will provide a Local URL (e.g., `http://127.0.0.1:xxxx`). Open it in Chrome and interact with the AI directly!
+### Deployment Stack
+- **Backend:** Flask (Python)
+- **Production Server:** Gunicorn (Optimized with 1 worker/4 threads for Render Free Tier)
+- **Environment:** `tensorflow-cpu` to fit within 512MB RAM limits.
 
 ---
 
-## ☁️ Cloud Deployment (Render.com)
-The platform is fully configured for automatic continuous deployment. To re-deploy to Render:
-1. Ensure your latest `waste_classification_model.h5`, `app.py`, and `requirements.txt` are pushed here.
-2. Render automatically detects the configuration and uses the `Procfile` command `web: python app.py`.
-3. The platform binds the Gradio port independently. Done!
+## 💻 Running Locally
+
+1. **Clone & Setup:**
+   ```bash
+   git clone https://github.com/Dkdiv890/Mini-Project-4-sem.git
+   cd "alok gn"
+   ```
+
+2. **Install Dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Launch:**
+   ```bash
+   python app.py
+   ```
+   *Visit `http://127.0.0.1:8080` in your browser.*
 
 ---
-*Developed proudly as a Computer Vision classification demonstration.*
+
+## 📂 Project Structure
+- `app.py`: Flask API & Model Loading Logic
+- `templates/`: HTML structures
+- `static/`: Modern CSS & JS logic
+- `waste_classification_model.h5`: The "Brain" (Trained Neural Network)
+- `AI_Training_Source_Code/`: Original training scripts and data loaders
+
+---
+<div align="center">
+  <sub>Developed with ❤️ for Academic Excellence in AI & Machine Learning.</sub>
+</div>
