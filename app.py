@@ -3,6 +3,7 @@ import tensorflow as tf
 import numpy as np
 from PIL import Image
 from flask import Flask, request, jsonify, render_template
+from tensorflow.keras.applications.efficientnet import preprocess_input
 
 # Force CPU to save memory on Render Free Tier
 tf.config.set_visible_devices([], 'GPU')
@@ -73,12 +74,17 @@ def predict():
         # 2. Process Image
         img = Image.open(file.stream).convert('RGB')
         img = img.resize(IMG_SIZE)
-        img_array = np.array(img) / 255.0
+        img_array = np.array(img, dtype=np.float32)
+        
+        # Applying the dedicated EfficientNet preprocessor (Ensures [0, 255] range compatibility)
+        img_array = preprocess_input(img_array)
         img_array = np.expand_dims(img_array, axis=0)
 
         # 3. Predict
         predictions = current_model.predict(img_array, verbose=0)
-        score = tf.nn.softmax(predictions[0])
+        
+        # Since model already has Softmax in the last layer, use predictions[0] directly
+        score = predictions[0]
         
         # 4. Format Results
         result = {
