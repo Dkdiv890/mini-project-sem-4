@@ -1,3 +1,12 @@
+---
+title: WasteAI Intelligent Classifier
+emoji: ♻️
+colorFrom: green
+colorTo: green
+sdk: docker
+pinned: false
+---
+
 <div align="center">
   <img src="https://img.icons8.com/isometric/512/bothe-recycle-bin.png" width="120" />
   <h1>♻️ WasteAI: Intelligent Waste Classifier</h1>

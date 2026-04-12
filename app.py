@@ -100,6 +100,6 @@ def predict():
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
-    # Default to 8080 for local and dynamic for Render
-    port = int(os.environ.get('PORT', 8080))
+    # Default to 7860 for Hugging Face Spaces
+    port = int(os.environ.get('PORT', 7860))
     app.run(host='0.0.0.0', port=port, debug=False)
