@@ -5,10 +5,11 @@ from PIL import Image
 from flask import Flask, request, jsonify, render_template
 from tensorflow.keras.applications.efficientnet import preprocess_input
 
-# Force CPU to save memory on Render Free Tier
+# Force CPU to save memory on Render/HF Free Tier
 tf.config.set_visible_devices([], 'GPU')
 
-app = Flask(__name__)
+# Updated for FLAT structure (all files in root)
+app = Flask(__name__, template_folder='.', static_folder='.')
 
 MODEL_PATH = 'waste_classification_model.h5'
 CLASS_NAMES = ['metal', 'paper', 'plastic']

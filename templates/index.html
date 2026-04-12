@@ -7,7 +7,7 @@
   <meta name="description" content="Upload an image and our AI will instantly classify it as Metal, Paper, or Plastic with 96% accuracy." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/static/style.css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
 </head>
 <body>
   <!-- Animated Background -->
@@ -159,6 +159,6 @@
     <p class="footer-sub">Kaggle Verified Dataset · 96% Validated Accuracy</p>
   </footer>
 
-  <script src="/static/script.js"></script>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
