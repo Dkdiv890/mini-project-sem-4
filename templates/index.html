@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>♻️ WasteAI – Intelligent Waste Classifier</title>
-  <meta name="description" content="Upload an image and our AI will instantly classify it as Metal, Paper, or Plastic with 96% accuracy." />
+  <meta name="description" content="Upload an image and our AI will instantly classify it as Metal, Paper, or Plastic with 96% accuracy. Dataset: https://www.kaggle.com/datasets/sumn2u/garbage-classification-v2" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <!-- Animated Background -->
@@ -156,9 +156,9 @@
   <!-- Footer -->
   <footer class="footer">
     <p>Built with ❤️ using <strong>EfficientNetB0</strong> · TensorFlow · Flask</p>
-    <p class="footer-sub">Kaggle Verified Dataset · 96% Validated Accuracy</p>
+    <p class="footer-sub">96% Validated Accuracy · <a href="https://www.kaggle.com/datasets/sumn2u/garbage-classification-v2" target="_blank" style="color: #10b981; text-decoration: none; font-weight: 500;">Dataset Source (Kaggle) ↗</a></p>
   </footer>
 
-  <script src="{{ url_for('static', filename='script.js') }}"></script>
+  <script src="script.js"></script>
 </body>
 </html>

@@ -24,6 +24,11 @@ The system utilizes **EfficientNetB0**, which optimizes network depth, width, an
 The WasteAI classification engine achieved exceptional accuracy, verified against a strict validation subset.
 * **Global Validation Accuracy:** **96.24%**
 * **Classification Performance:**
+  | Feature | Specification |
+| :--- | :--- |
+| **Model Architecture** | EfficientNetB0 (Convolutional Neural Network) |
+| **Training Dataset** | [Garbage Classification V2 (Kaggle)](https://www.kaggle.com/datasets/sumn2u/garbage-classification-v2) |
+| **Input Shape** | 224 x 224 x 3 (RGB) |
   | Material | Precision | Recall | F1-Score | Status |
   | :--- | :--- | :--- | :--- | :--- |
   | **Metal** | 0.95 | 0.97 | 0.96 | Optimal |

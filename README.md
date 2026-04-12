@@ -21,7 +21,11 @@ pinned: false
 ---
 
 ## 🌟 Project Overview
-WasteAI is a state-of-the-art computer vision application designed to automate the classification of common household waste into **Metal, Paper, and Plastic**. 
+WasteAI is a state-of-the-art computer vision application designed to automate the classification of common### 📊 Dataset Details
+- **Source**: [Kaggle - Garbage Classification V2](https://www.kaggle.com/datasets/sumn2u/garbage-classification-v2)
+- **Total Images**: ~3,800
+- **Classes**: Metal, Paper, Plastic
+. 
 
 Built for industrial-grade reliability, the system leverages **Transfer Learning** with the **EfficientNetB0** architecture, trained on thousands of verified real-world samples to achieve an impressive **96% validation accuracy**.
 
