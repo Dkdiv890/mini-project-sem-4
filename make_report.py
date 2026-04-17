@@ -737,6 +737,31 @@ Training Summary:
   Model Architecture:     EfficientNetB0 + GAP + Dropout(0.3) + Dense(3, softmax)
   Total Parameters:       ~5.3 Million
   Trainable (Phase 2):    5,302,660  Non-trainable: 0""")
+doc.add_page_break()
+h(doc,'D. Keras Model Architecture Summary',2)
+code(doc,"""Model: "WasteAI_Core"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ input_image (InputLayer)    [(None, 224, 224, 3)]     0         
+                                                                 
+ augmentation_layer (Sequent  multiple                 0         
+ ial)                                                            
+                                                                 
+ efficientnetb0 (Functional)  (None, 7, 7, 1280)       4049571   
+                                                                 
+ global_average_pooling2d (G  (None, 1280)             0         
+ lobalAveragePooling2D)                                          
+                                                                 
+ dropout (Dropout)           (None, 1280)              0         
+                                                                 
+ output (Dense)              (None, 3)                 3843      
+                                                                 
+=================================================================
+Total params: 4,053,414
+Trainable params: 3,843
+Non-trainable params: 4,049,571
+_________________________________________________________________""")
 doc.save('FINAL_Report_GGV_WasteAI_60pages.docx')
 print("SUCCESS! FINAL_Report_GGV_WasteAI_60pages.docx Generated!")
 print("Estimated pages: 60+")
