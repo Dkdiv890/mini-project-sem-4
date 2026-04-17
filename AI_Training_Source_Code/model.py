@@ -4,9 +4,9 @@ from tensorflow.keras.applications import EfficientNetB0
 from tensorflow.keras.applications.efficientnet import preprocess_input
 
 IMG_SIZE = (224, 224)
-FREEZE_UNTIL = 180
+FREEZE_UNTIL = 0
 LR_PHASE1 = 0.001
-LR_PHASE2 = 1e-05
+LR_PHASE2 = 5e-05
 
 def build_model(num_classes, augmentation_layer):
     base_model = EfficientNetB0(input_shape=IMG_SIZE + (3,), include_top=False, weights='imagenet')

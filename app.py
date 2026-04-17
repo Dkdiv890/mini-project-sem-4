@@ -9,7 +9,7 @@ tf.config.set_visible_devices([], 'GPU')
 
 app = Flask(__name__, template_folder='.', static_folder='.', static_url_path='')
 
-MODEL_PATH = 'waste_classification_model.h5'
+MODEL_WEIGHTS_PATH = 'best_weights.h5'
 CLASS_NAMES = ['metal', 'paper', 'plastic']
 IMG_SIZE = (224, 224)
 
@@ -26,15 +26,13 @@ def get_model():
     if model is None:
         try:
             tf.keras.backend.clear_session()
-            custom_objects = {
-                'DepthwiseConv2D': FixedDepthwiseConv2D,
-                'FixedDepthwiseConv2D': FixedDepthwiseConv2D
-            }
-            model = tf.keras.models.load_model(
-                MODEL_PATH, 
-                custom_objects=custom_objects, 
-                compile=False
-            )
+            from AI_Training_Source_Code.model import build_model, prepare_for_fine_tuning
+            from AI_Training_Source_Code.data_loader import get_augmentation_layer
+            augmentation = get_augmentation_layer()
+            base, _ = build_model(len(CLASS_NAMES), augmentation)
+            model = prepare_for_fine_tuning(base, _)
+            model.load_weights(MODEL_WEIGHTS_PATH)
+            print("Successfully loaded model from best weights!")
         except Exception as e:
             raise e
     return model
@@ -62,8 +60,6 @@ def predict():
         img = Image.open(file.stream).convert('RGB')
         img = img.resize(IMG_SIZE)
         img_array = np.array(img, dtype=np.float32)
-        
-        img_array = preprocess_input(img_array)
         img_array = np.expand_dims(img_array, axis=0)
 
         predictions = current_model.predict(img_array, verbose=0)
