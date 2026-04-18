@@ -6,14 +6,13 @@ import os
 
 EPOCHS_PHASE1 = 15
 EPOCHS_PHASE2 = 25
-MODEL_SAVE_PATH = 'waste_classification_model'  # No .h5 to use TF SavedModel format
+MODEL_SAVE_PATH = 'waste_classification_model'
 
 def main():
     train_ds, val_ds, class_names = get_datasets()
     num_classes = len(class_names)
     augmentation = get_augmentation_layer()
     model, base_model = build_model(num_classes, augmentation)
-    #print(model.summary())
     lr_reduction = ReduceLROnPlateau(monitor='val_loss', patience=5, verbose=1, factor=0.3, min_lr=1e-07)
     early_stop = EarlyStopping(monitor='val_loss', patience=7, restore_best_weights=True, verbose=1)
     checkpoint = ModelCheckpoint('best_weights.h5', monitor='val_accuracy', save_best_only=True, verbose=1, save_weights_only=True)
@@ -37,4 +36,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-#print(model.summary())
