@@ -10,29 +10,27 @@ cm = np.array([
 
 class_names = ['Metal', 'Paper', 'Plastic']
 
-plt.figure(figsize=(8, 6))
+# Adjusted figure size closer to a square (7x6) to avoid massive white spaces
+plt.figure(figsize=(7, 6))
 
-# Plot the heatmap without seaborn annotations
+# Added square=True to ensure perfect visual symmetry of the boxes
 ax = sns.heatmap(cm, annot=False, cmap='Blues',
             xticklabels=class_names,
             yticklabels=class_names,
-            linewidths=0.5, linecolor='gray')
+            linewidths=0.5, linecolor='gray',
+            square=True) 
 
-# Manually add the text to guarantee it shows up properly in all rows
 for i in range(cm.shape[0]):
     for j in range(cm.shape[1]):
-        # Decide text color based on cell color (dark background needs white text)
         value = cm[i, j]
-        # Rough heuristic: if value > 100, background is dark blue -> text white
         text_color = "white" if value > 100 else "black"
         ax.text(j + 0.5, i + 0.5, str(value),
                 ha="center", va="center", color=text_color,
                 fontsize=14, fontweight="bold")
 
-plt.title('Validation Confusion Matrix', fontsize=14, fontweight='bold')
+plt.title('Validation Confusion Matrix', fontsize=14, fontweight='bold', pad=15)
 plt.ylabel('True Label', fontsize=12)
 plt.xlabel('Predicted Label', fontsize=12)
 plt.tight_layout()
-plt.savefig('TEST_MATRIX.png', dpi=150)
 plt.savefig('validation_matrix.png', dpi=150)
-print("Manual text matrix generated!")
+print("Square symmetric matrix generated!")
