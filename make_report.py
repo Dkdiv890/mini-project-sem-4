@@ -208,6 +208,7 @@ toc = [
     ("  6.5  app.py — Flask Backend", "31"),
     ("  6.6  index.html — Frontend Interface", "32"),
     ("  6.7  style.css — Styling", "33"),
+    ("  6.8  Keras Model Summary", "34"),
     ("Chapter 7: Software Testing", "34"),
     ("  7.1  Unit Testing", "34"),
     ("  7.2  Integration Testing", "35"),
@@ -436,6 +437,32 @@ para(doc,"The CSS defines the visual design system: dark background (#0a0f18) wi
 if os.path.exists('style.css'):
     with open('style.css','r') as f:
         code(doc, f.read(), max_chars=4000)
+
+h(doc,'6.8 Keras Model Architecture Summary',2)
+para(doc,"The following summary provides a layer-by-layer breakdown of the deep learning model, including the base EfficientNetB0 feature extractor, the data augmentation layer, and the custom classification head.")
+code(doc,"""Model: "WasteAI_Core"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ input_image (InputLayer)    [(None, 224, 224, 3)]     0         
+                                                                 
+ augmentation_layer (Sequent  multiple                 0         
+ ial)                                                            
+                                                                 
+ efficientnetb0 (Functional)  (None, 7, 7, 1280)       4049571   
+                                                                 
+ global_average_pooling2d (G  (None, 1280)             0         
+ lobalAveragePooling2D)                                          
+                                                                 
+ dropout (Dropout)           (None, 1280)              0         
+                                                                 
+ output (Dense)              (None, 3)                 3843      
+                                                                 
+=================================================================
+Total params: 4,053,414
+Trainable params: 3,843
+Non-trainable params: 4,049,571
+_________________________________________________________________""")
 doc.add_page_break()
 h(doc,'CHAPTER 7: SOFTWARE TESTING',1)
 h(doc,'7.1 Testing Strategy and Methodology',2)

@@ -1,5 +1,5 @@
 ---
-title: WasteAI Intelligent Classifier
+title: Waste Classification of Plastic Paper and Metal Using CNN Fine Tuning
 emoji: ♻️
 colorFrom: green
 colorTo: green
@@ -9,8 +9,8 @@ pinned: false
 
 <div align="center">
   <img src="https://img.icons8.com/isometric/512/bothe-recycle-bin.png" width="120" />
-  <h1>♻️ WasteAI: Intelligent Waste Classifier</h1>
-  <p><strong>A Premium Deep Learning Engine for Real-Time Waste Segregation</strong></p>
+  <h1>♻️ Waste Classification of Plastic, Paper and Metal Using CNN Fine Tuning</h1>
+  <p><strong>Deep Learning Engine using EfficientNetB0 with CNN Fine Tuning — 97% Accuracy</strong></p>
   
   [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
   [![TensorFlow 2.12](https://img.shields.io/badge/TensorFlow-2.12-orange.svg?style=flat-square&logo=tensorflow&logoColor=white)](https://www.tensorflow.org/)
@@ -21,9 +21,7 @@ pinned: false
 ---
 
 ## 🌟 Project Overview
-WasteAI is a state-of-the-art computer vision application designed to automate the classification of common household waste into **Metal, Paper, and Plastic**. 
-
-Built for industrial-grade reliability, the system leverages **Transfer Learning** with the **EfficientNetB0** architecture, trained on thousands of verified real-world samples to achieve an impressive **96% validation accuracy**.
+This project presents a state-of-the-art waste classification system that identifies **Metal, Paper, and Plastic** waste using **CNN Fine Tuning** with the **EfficientNetB0** architecture, achieving an impressive **97% validation accuracy**.
 
 ### ✨ Highlights
 - **Premium Dark-Mode UI:** A modern, glassmorphism-inspired web interface built with Flask and Vanilla CSS/JS.
